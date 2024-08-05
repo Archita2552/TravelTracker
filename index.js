@@ -16,10 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 let currentUserId = 1;
 
-let users = [
-  // { id: 1, name: "Archita", color: "leavender" },
-  // { id: 2, name: "Aryan", color: "powderblue" },
-];
+let users = [];
 
 
  async function checkVisisted() {
@@ -83,8 +80,7 @@ app.post("/user", async (req, res) => {
 });
 
 app.post("/new", async (req, res) => {
-  //Hint: The RETURNING keyword can return the data that was inserted.
-  //https://www.postgresql.org/docs/current/dml-returning.html
+  
   const name=req.body.name;
   const color=req.body.color;
   const result=await db.query("INSERT INTO users (name,color) values($1,$2) RETURNING *;"
